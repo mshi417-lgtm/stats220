@@ -1,0 +1,28 @@
+---
+title: My dynamic report
+output: html_fragment
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
+
+library(tidyverse)
+
+logged_data <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vRLksYSJijyWXufV9fSMFjS1nBm3dY2X_mNJLrl_S9WXgEeQsKMdfwecs2VB7RkLgTfDALdMxNucqrN/pub?output=csv")
+```
+
+## Phone Usage Analysis
+
+The average phone usage is `r mean(logged_data[[2]])` minutes.
+
+The maximum phone usage is `r max(logged_data[[2]])` minutes.
+
+```{r}
+ggplot(logged_data, aes(x = logged_data[[3]])) +
+  geom_bar()
+```
+
+```{r}
+ggplot(logged_data, aes(x = logged_data[[4]])) +
+  geom_bar()
+```
